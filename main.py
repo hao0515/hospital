@@ -1,8 +1,9 @@
 import json
 import requests
 from urllib import parse
-import  time
-import schedule
+import time
+import datetime
+
 
 def select():
     header = {"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"}
@@ -18,11 +19,16 @@ def select():
 
     message = jsonobj["data"][0]["hasRegInfo"]  # 从Json对象获取想要的内容
     # print(message)
-
+    now_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    # print(now_time)
     if message > "2023-07-09":
-        requests.get(url="https://xizhi.qqoq.net/XZeaee627d888d0f67a6af89a2f327d423.channel?title=有新的排班时间&content=有新的排班时间")
+        requests.get(
+            url="https://xizhi.qqoq.net/XZeaee627d888d0f67a6af89a2f327d423.channel?title=有新的排班时间&content=有新的排班时间")
     else:
-            print("没放号排班时间")
+        print("没放号排班时间", now_time)
+
+
 while True:
-    time.sleep(60)
     select()
+    time.sleep(60)
+
